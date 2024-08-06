@@ -1,0 +1,50 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>160</x><y>40</y><w>280</w><h>180</h></coordinates><panel_attributes>transparency=90
+bg=green
+/User/
+--
+-id: Long
+- name: String
+- email: String
+- password: String
+- savefileId: Long
+--
++ createUser(name: String, email: String,
+ password: String):
++ modifyUserData(id:Long, name:String,
+ email: String, password: String):
++ deleteUser(id:Long, name:String):
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>220</x><y>340</y><w>280</w><h>180</h></coordinates><panel_attributes>transparency=90
+bg=green
+/SaveFile/
+--
+-id: Long
+-userId: Long
+-currencyBank: BigNumbers
+-producerList: Array
+-upgradeList: Array
+
+--
++restartSavefile
++exportSavefile
++importSavefile</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>700</y><w>280</w><h>180</h></coordinates><panel_attributes>transparency=90
+bg=green
+/Producer/
+--
+
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>590</x><y>700</y><w>280</w><h>180</h></coordinates><panel_attributes>transparency=90
+bg=green
+/Upgrades/
+--
+
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>200</y><w>90</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;140;50;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>500</y><w>120</w><h>230</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;210;45;105;100;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>710</y><w>280</w><h>180</h></coordinates><panel_attributes>transparency=90
+bg=green
+/Producer/
+--
+
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>480</y><w>260</w><h>250</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>240;230;95;105;10;10</additional_attributes></element></diagram>
