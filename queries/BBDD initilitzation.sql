@@ -9,15 +9,15 @@ usr_id INTEGER NOT NULL,
 usr_name VARCHAR(255) NOT NULL,
 usr_mail VARCHAR(255),
 usr_password VARCHAR(255) NOT NULL,
-usr_svfileid LONG,
+usr_svfileid INTEGER,
 PRIMARY KEY (usr_id)
 );
 
 CREATE TABLE savefile (
 svfile_id INTEGER NOT NULL,
-svfile_usrid LONG NOT NULL,
+svfile_usrid INTEGER NOT NULL,
 svfile_currency BIGINT,
-svfile_totalcps DOUBLE,
+svfile_totalcps BIGINT,
 svfile_producers JSON,
 svfile_upgrades JSON,
 PRIMARY KEY (svfile_id)
