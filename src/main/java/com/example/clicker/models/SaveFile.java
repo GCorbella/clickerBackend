@@ -4,12 +4,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jdk.jfr.DataAmount;
 
+import java.io.*;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Entity
-public class SaveFile {
+public class Savefile {
     @Id
     private int id;
     @OneToOne
@@ -20,8 +24,16 @@ public class SaveFile {
     private ArrayList<Producer> producers;
     private ArrayList<Upgrade> upgrades;
 
-    public SaveFile() {
+    public Savefile() {
 
+    }
+
+    public Savefile(int userId) {
+        this.userId = userId;
+        this.currency = BigInteger.valueOf(0);
+        this.totalCPS = BigInteger.valueOf(0);
+        this.producers = new ArrayList<Producer>();
+        this.upgrades = new ArrayList<Upgrade>();
     }
 
     //setters
@@ -73,4 +85,62 @@ public class SaveFile {
     public ArrayList<Upgrade> getUpgrades() {
         return upgrades;
     }
+
+    //methods
+
+    public Savefile createSavefile(int userId) {
+        Savefile saveFile = new Savefile(userId);
+        return saveFile;
+    }
+
+    public void saveSavefile(Savefile saveFile) {
+        this.setCurrency(saveFile.getCurrency());
+        this.setTotalCPS(saveFile.getTotalCPS());
+        this.setProducers(saveFile.getProducers());
+        this.setUpgrades(saveFile.getUpgrades());
+
+    }
+
+    public void loadSavefile(Savefile saveFile) {
+        this.setCurrency(saveFile.getCurrency());
+        this.setTotalCPS(saveFile.getTotalCPS());
+        this.setProducers(saveFile.getProducers());
+        this.setUpgrades(saveFile.getUpgrades());
+
+    }
+
+    public void restartSavefile(Savefile saveFile) {
+        this.setCurrency(BigInteger.valueOf(0));
+        this.setTotalCPS(BigInteger.valueOf(0));
+        this.setProducers(new ArrayList<Producer>());
+        this.setUpgrades(new ArrayList<Upgrade>());
+
+    }
+
+    public File exportSavefile(Savefile savefile) throws IOException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = new Date();
+        date.getTime();
+
+
+        File save_file = new File("savefile_" + formatter.format(date));
+
+
+        FileWriter fwriter = new FileWriter(save_file);
+        BufferedWriter bufferedWriter = new BufferedWriter(fwriter);
+
+        bufferedWriter.write(savefile.getCurrency().toString());
+        bufferedWriter.newLine();
+        bufferedWriter.write(savefile.getTotalCPS().toString());
+
+        //falta parsear los JSON para escribir en el txt los arrays
+
+        bufferedWriter.close();
+        fwriter.close();
+        
+        // falta return de File
+
+    }
+
+
 }
